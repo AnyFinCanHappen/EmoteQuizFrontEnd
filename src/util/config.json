@@ -1,0 +1,8 @@
+{
+    "backendURL":"http://0.0.0.0:6243/api/service/",
+    "backendEP":{
+        "getEmotes":"prepare"
+    },
+    "imgURL":"https://cdn.betterttv.net/emote/",
+    "imgVersion": "3x"
+}
