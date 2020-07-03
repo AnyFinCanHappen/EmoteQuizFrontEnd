@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Prepare from './util/prepare';
 import Config from './util/config.json';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container,Row,Col} from 'react-bootstrap';
+import "./css/style.css"
 const {imgURL,imgVersion} = Config;
 
 
@@ -10,7 +12,7 @@ class Quiz extends Component{
         emotes:null,
         input:"",
         correctAnswers:0,
-        currentEmote:8,
+        currentEmote:0,
     };
     
     componentDidMount(){
@@ -45,7 +47,11 @@ class Quiz extends Component{
     displayImage = () => {
         const {emotes, currentEmote} = this.state;
         return(
-            <img src = {imgURL  +  emotes[currentEmote].id + "/" + imgVersion} id = {currentEmote} alt = "Error Loading"/>
+            <img src = {imgURL  +  emotes[currentEmote].id + "/" + imgVersion} 
+                id = {currentEmote} 
+                alt = "Error Loading"
+                className = "image"
+            />
         );
     }
 
@@ -92,7 +98,13 @@ class Quiz extends Component{
         if(emotes === null){
             return(
                 <div>
-                    Loading
+                    <Container>
+                        <Row className = "home align-items-center">
+                            <Col>
+                                Loading
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             );
         }
@@ -101,14 +113,20 @@ class Quiz extends Component{
             const {input} = this.state;
             return (
                 <div>
-                    <this.displayImage/>
-                    <form onSubmit = {this.handleSubmit}>
-                        <label>Input your answer</label>
-                        <input name = "input" value = {input} onChange = {this.updateField}/>
-                    </form>
-                    <button onClick = {this.handleGiveUp}>
-                        Give Up
-                    </button>
+                    <Container>
+                        <Row className = "home align-items-center">
+                            <Col>
+                                <this.displayImage/>
+                                <form onSubmit = {this.handleSubmit}>
+                                    <label>Input your answer</label>
+                                    <input name = "input" value = {input} onChange = {this.updateField}/>
+                                </form>
+                                <button onClick = {this.handleGiveUp}>
+                                    Give Up
+                                </button>
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             );
         }

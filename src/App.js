@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Route , Switch} from 'react-router-dom';
-import './css/App.css';
 import Quiz from './Quiz';
 import Home from './Home';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component{
 
@@ -21,7 +20,7 @@ class App extends Component{
   render()
   {
     return(
-      <div className = "App">
+      <div className = "text-center">
         <Switch>
           <Route path = "/quiz" render = {props => <Quiz setComplete = {this.setComplete} {...props}/>}/>
           <Route path = "/" render = {props => <Home complete = {this.state.complete} correctAnswers = {this.state.correctAnswers} {...props}/>}/>
