@@ -16,9 +16,11 @@ class Quiz extends Component{
     };
     
     componentDidMount(){
-        this.initEmote();
+        this.initEmoteBTTV();
     }
 
+    //Function used to get emotes from backend, not not neccessary.
+    //this webapp is currently using initEmoteBTTV().
     initEmote (){
         const acceptCode = 210;
         Prepare.sendPrepareEP()
@@ -37,6 +39,30 @@ class Quiz extends Component{
                    emotes:emotesList
                 });
             }
+        })
+        .catch(error => {
+                console.log(error)
+            }
+        );
+    }
+
+    //Function used to get emotes from bttv api.
+    //This function will return same results as initEmote().
+    initEmoteBTTV(){
+        Prepare.sendBttvEP(100,0)
+        .then(response =>{
+            let emotesList = [];
+            response.emotes.forEach(element => {
+                let emote = {
+                    id:element.id,
+                    code:element.code,
+                    type:element.type
+                };
+                emotesList.push(emote);
+            });
+            this.setState({
+                emotes:emotesList
+            });
         })
         .catch(error => {
                 console.log(error)

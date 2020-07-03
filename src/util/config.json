@@ -3,6 +3,10 @@
     "backendEP":{
         "getEmotes":"prepare"
     },
+    "bttvEP":{
+        "URL":"https://api.betterttv.net/3/",
+        "path":"emotes/shared/top"
+    },
     "imgURL":"https://cdn.betterttv.net/emote/",
     "imgVersion": "3x"
 }

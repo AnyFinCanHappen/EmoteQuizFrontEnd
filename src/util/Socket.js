@@ -1,23 +1,20 @@
 import Axios from 'axios';
-import Config from './config.json';
-
-const {backendURL} = Config;
 
 const HTTPMethod= Object.freeze({
     GET:"GET",
     POST:"POST"
 });
 
-function initSocket(){
-    Axios.defaults.baseURL = backendURL;
+function initSocket(url){
+    Axios.defaults.baseURL = url;
 }
 
-async function sendGetHTTP(path){
-    return await sendHTTP(HTTPMethod.GET,path);
+async function sendGetHTTP(url, path){
+    return await sendHTTP(HTTPMethod.GET,url,path);
 }
 
-async function sendHTTP(method, path, data){
-    initSocket();
+async function sendHTTP(method, url, path, data){
+    initSocket(url);
     let response;
     switch(method){
         case HTTPMethod.GET:
@@ -31,8 +28,7 @@ async function sendHTTP(method, path, data){
                 "message": "Invalid HTTPmethod",
                 "resultCode": -2
             };
-            throw response;
-            
+            throw response;        
     }
     return await response;
 }
